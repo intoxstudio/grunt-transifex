@@ -37,6 +37,7 @@ module.exports = function(grunt) {
       async.waterfall([
         api.availableResources,
         api.resourceDetails,
+        api.languageStats,
         api.prepareRequests,
         api.fetchStrings,
         api.writeLanguageFiles
