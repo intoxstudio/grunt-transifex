@@ -14,7 +14,9 @@
     "transifex",
     "i18n"
   ],
-  "author": "Erasys GmbH",
+  "author": {
+    "name": "Erasys GmbH"
+  },
   "license": "MIT",
   "engines": {
     "node": ">= 0.8.0"
@@ -28,5 +30,15 @@
   },
   "peerDependencies": {
     "grunt": "~0.4.4"
-  }
+  },
+  "readme": "# grunt-transifex\r\n\r\nProvides a Grunt task that downloads translation strings from Transifex into your project using the [Transifex API](http://support.transifex.com/customer/portal/topics/440186-api/articles).\r\n\r\n## Usage\r\n\r\n`Gruntfile.js` shows some configuration examples.  The plugin is configured by adding a `transifex` section into the Grunt config:\r\n\r\n```javascript\r\n    transifex: {\r\n      \"ios-ready\": {\r\n        options: {\r\n          targetDir: \"./translations/ios-ready\",         // download specified resources / langs only\r\n          resources: [\"localizable_enstrings\"],\r\n          languages: [\"en_US\", \"fr\"],\r\n          filename : \"_resource_-_lang_.json\",\r\n          templateFn: function(strings) { return ...; }  // customize the output file format (see below)\r\n        }\r\n      },\r\n      \"new-admintool\": {\r\n        options: {\r\n          targetDir: \"./translations/admintool-i18n\"     // download all available resources in all languages\r\n          \t\t\t\t\t\t\t\t\t              // using the default filename layout: _resource_/_lang_.json\r\n        }\r\n      }\r\n    }\r\n```\r\n\r\nYou can configure several projects: the `transifex` task will process each one of them in series.\r\n\r\nThis configuration enables running the `transifex` Grunt task on the command line.  The following shows a sample of possible usage scenarios:\r\n\r\n\r\n```bash  \r\n   grunt transifex:ios-ready\r\n     --> Downloads reviewed & non-reviewed strings for resource 'localizable_enstrings' for languages\r\n        'en_US' and 'fr'\r\n   grunt transifex:ios-ready:reviewed\r\n     --> Same as above, but downloads reviewed strings only\r\n  \r\n   grunt transifex\r\n     --> Downloads reviewed & non-reviewed strings for all configured Transifex projects\r\n   grunt transifex::reviewed\r\n     --> Same as above, but downloads reviewed strings only\r\n```\r\n\r\nTranslated strings will saved into plain JSON if you use the default output configuration:\r\n\r\n```json\r\n{\r\n\t\"key_welcome\": \"Bienvenue\",\r\n\t\"key_register\": \"Enregistrez-vous!\"\r\n}\r\n```\r\n\r\n## Transifex credentials\r\n\r\nWhen the plugin runs for the first time, it will prompt the user for a Transifex username and password.\r\nIt will store this information in a `.transifexrc` file created in the current directory. \r\n\r\nOn subsequent executions, the user won't be prompted again. Transifex credentials will be read from `.transifexrc`\r\n\r\n## Advanced customization\r\n\r\nUsing the `templateFn` hook function in Grunt's `transifex` configuration section, you can customize the output file format to anything you want.\r\n\r\nThis function operates on the [Transifex strings API\u0010](http://support.transifex.com/customer/portal/articles/1026117-translation-strings-api) output array.\r\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/erasys/grunt-transifex/issues"
+  },
+  "homepage": "https://github.com/erasys/grunt-transifex",
+  "_id": "grunt-transifex@0.1.1",
+  "_shasum": "652452e3ddbf72e8ea31940bc9fb3ffa94f35c38",
+  "_resolved": "git://github.com/intoxstudio/grunt-transifex#864fa2d7125695c71c45e26e8bf25b0e9bb013cf",
+  "_from": "git://github.com/intoxstudio/grunt-transifex"
 }
